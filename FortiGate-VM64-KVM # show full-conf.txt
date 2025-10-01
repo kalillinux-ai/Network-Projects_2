@@ -1,0 +1,64 @@
+FortiGate-VM64-KVM # show full-configuration system interface
+name    Name.
+
+IoT   static   0.0.0.0 0.0.0.0  10.10.30.254 255.255.255.0  up   disable   vlan  enable
+financeiro   static   0.0.0.0 0.0.0.0  10.10.10.254 255.255.255.0  up   disable   vlan  enable
+fortilink   static   0.0.0.0 0.0.0.0  10.255.1.1 255.255.255.0  up   disable   aggregate  enable
+l2t.root   static   0.0.0.0 0.0.0.0  0.0.0.0 0.0.0.0  up   disable   tunnel  enable
+marketing   static   0.0.0.0 0.0.0.0  10.10.20.254 255.255.255.0  up   disable   vlan  enable
+naf.root   static   0.0.0.0 0.0.0.0  0.0.0.0 0.0.0.0  up   disable   tunnel  disable
+port1   static   0.0.0.0 0.0.0.0  163.100.200.1 255.255.255.252  up   disable   physical  enable
+port2   static   0.0.0.0 0.0.0.0  10.10.40.254 255.255.255.0  up   disable   physical  enable
+port3   static   0.0.0.0 0.0.0.0  0.0.0.0 0.0.0.0  up   disable   physical  enable
+port4   static   0.0.0.0 0.0.0.0  0.0.0.0 0.0.0.0  up   disable   physical  enable
+ssl.root   static   0.0.0.0 0.0.0.0  0.0.0.0 0.0.0.0  up   disable   tunnel  enable 
+
+config firewall policy
+    edit 1
+        set name "LAN TO INTERNET"
+        set uuid a3d39700-8fc9-51f0-fb6f-f95b5301f4b5
+        set srcintf "marketing" "financeiro" "IoT"
+        set dstintf "port1"
+        set action accept
+        set srcaddr "marketing address" "financeiro address" "IoT address"
+        set dstaddr "all"
+        set schedule "always"
+        set service "ALL"
+        set nat enable
+    next
+    edit 2
+        set name "vlan 20 to 10 and 30"
+        set uuid bc2c9710-8fca-51f0-c1de-ac1641b1fb98
+        set srcintf "marketing"
+        set dstintf "financeiro" "IoT"
+        set action accept
+        set srcaddr "marketing address"
+        set dstaddr "financeiro address" "IoT address"
+        set schedule "always"
+        set service "PING"
+    next
+    edit 3
+        set name "vlan 10 to 20 and 30"
+        set uuid ee775052-8fca-51f0-e22f-2e2f88d71257
+        set srcintf "financeiro"
+        set dstintf "IoT" "marketing"
+        set action accept
+        set srcaddr "financeiro address"
+        set dstaddr "IoT address" "marketing address"
+        set schedule "always"
+        set service "PING"
+    next
+    edit 4
+        set name "vlan 30 to 10 and 20"
+        set uuid 0bb27552-8fcb-51f0-2e9c-b215f5d7ff35
+        set srcintf "IoT"
+        set dstintf "financeiro" "marketing"
+        set action accept
+        set srcaddr "IoT address"
+        set dstaddr "financeiro address" "marketing address"
+        set schedule "always"
+        set service "PING"
+    next
+end
+
+

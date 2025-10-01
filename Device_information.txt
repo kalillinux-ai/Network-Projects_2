@@ -1,0 +1,29 @@
+VLAN-10
+
+IP ADDRESS: 10.10.10.2 
+DEFAULT-GATEWAY: 10.10.10.254
+NAME- Financeiro
+_________________________________
+
+VLAN-20
+
+IP ADDRESS 10.10.20.2
+DEFAULT-GATEWAY: 10.10.20.254
+NAME - Marketing
+
+__________________________________
+
+VLAN-30
+
+IP ADDRESS 10.10.30.2
+DEFAULT-GATEWAY: 10.10.30.254
+NAME - IoT 
+
+___________________________________
+
+WINDOWS
+
+
+IP ADDRESS 10.10.40.2
+DEFAULT-GATEWAY: 10.10.40.254
+NAME - Manager
