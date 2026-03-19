@@ -14,4 +14,5 @@
 -windows is my manager. i use the GUI Fortigate to make the config more easier. 
 
 
+<img width="999" height="706" alt="image" src="https://github.com/user-attachments/assets/4bc09fb4-be3d-4e9b-b67a-5ef6e6c67ab6" />
 
